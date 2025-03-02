@@ -155,7 +155,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-process:$lifecycleVersion"
     implementation 'androidx.preference:preference-ktx:1.2.1'
     implementation 'androidx.recommendation:recommendation:1.0.0'
-    implementation 'androidx.tvprovider:tvprovider:1.0.0'
     def vectordrawableVersion = '1.1.0' // 1.1.0 - latest version for API 16
     //noinspection GradleDependency
     implementation "androidx.vectordrawable:vectordrawable:${vectordrawableVersion}"

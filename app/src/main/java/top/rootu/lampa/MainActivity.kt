@@ -69,8 +69,6 @@ import org.xwalk.core.XWalkPreferences
 import top.rootu.lampa.browser.Browser
 import top.rootu.lampa.browser.SysView
 import top.rootu.lampa.browser.XWalk
-import top.rootu.lampa.channels.ChannelManager.getChannelDisplayName
-import top.rootu.lampa.channels.WatchNext
 import top.rootu.lampa.content.LampaProvider
 import top.rootu.lampa.helpers.Backup
 import top.rootu.lampa.helpers.Backup.loadFromBackup
@@ -758,16 +756,6 @@ class MainActivity : AppCompatActivity(),
                                         "component: 'main'," +
                                         "source: '" + lampaSource + "'," +
                                         "url: ''" +
-                                        "}"
-                            }
-
-                            LampaProvider.LIKE, LampaProvider.BOOK, LampaProvider.HIST -> {
-                                "{" +
-                                        "title: '" + getChannelDisplayName(channel) + "'," +
-                                        "component: '$channel' == 'book' ? 'bookmarks' : 'favorite'," +
-                                        "type: '$channel'," +
-                                        "url: ''," +
-                                        "page: 1" +
                                         "}"
                             }
 
@@ -1710,10 +1698,6 @@ class MainActivity : AppCompatActivity(),
                         it.fixCard()
                         try {
                             if (BuildConfig.DEBUG) Log.d("*****", "resultPlayer PlayNext $it")
-                            if (!ended)
-                                WatchNext.addLastPlayed(it)
-                            else
-                                WatchNext.removeContinueWatch()
                         } catch (e: Exception) {
                             if (BuildConfig.DEBUG) Log.d(
                                 "*****",

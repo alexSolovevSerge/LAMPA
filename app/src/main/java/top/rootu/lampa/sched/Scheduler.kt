@@ -14,7 +14,6 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import top.rootu.lampa.App
 import top.rootu.lampa.BuildConfig
-import top.rootu.lampa.channels.LampaChannels
 import top.rootu.lampa.helpers.Helpers.isAndroidTV
 import top.rootu.lampa.recs.RecsService
 import java.util.concurrent.TimeUnit
@@ -78,7 +77,6 @@ object Scheduler {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
             RecsService.updateRecs()
         else
-            LampaChannels.update(sync)
         isUpdate = false
     }
 

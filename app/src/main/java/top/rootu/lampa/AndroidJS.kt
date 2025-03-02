@@ -15,9 +15,6 @@ import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
 import top.rootu.lampa.browser.Browser
-import top.rootu.lampa.channels.LampaChannels
-import top.rootu.lampa.channels.LampaChannels.updateChanByName
-import top.rootu.lampa.channels.WatchNext.updateWatchNext
 import top.rootu.lampa.content.LampaProvider
 import top.rootu.lampa.helpers.Helpers.isAndroidTV
 import top.rootu.lampa.helpers.Helpers.isValidJson
@@ -183,13 +180,6 @@ class AndroidJS(private val mainActivity: MainActivity, private val browser: Bro
             } catch (e: Exception) {
                 if (BuildConfig.DEBUG) Log.d(TAG, e.message, e)
                 App.toast(R.string.no_torrent_activity_found, true)
-            }
-        }
-        // update Recs to filter viewed
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            CoroutineScope(Dispatchers.IO).launch {
-                delay(5000)
-                LampaChannels.updateRecsChannel()
             }
         }
         return true
@@ -358,13 +348,6 @@ class AndroidJS(private val mainActivity: MainActivity, private val browser: Bro
             }
         }
         mainActivity.runOnUiThread { mainActivity.runPlayer(jsonObject) }
-        // update Recs to filter viewed
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            CoroutineScope(Dispatchers.IO).launch {
-                delay(5000)
-                LampaChannels.updateRecsChannel()
-            }
-        }
     }
 
     @JavascriptInterface
@@ -421,18 +404,10 @@ class AndroidJS(private val mainActivity: MainActivity, private val browser: Bro
                 LampaProvider.SCHD,
                 LampaProvider.CONT,
                 LampaProvider.THRW -> {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        delay(5000)
-                        updateChanByName(where)
-                    }
                 }
 
                 LampaProvider.LATE -> {
-                    // Handle add to Watch Next from Lampa
-                    CoroutineScope(Dispatchers.IO).launch {
-                        delay(5000)
-                        updateWatchNext()
-                    }
+
                 }
             }
         }

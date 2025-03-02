@@ -21,5 +21,5 @@ System requirements: Android 4.1+ (API level 16+)
 </p>
 
 ### Last release links:
-- [Release page](https://github.com/lampa-app/LAMPA/releases/latest)
-- [Direct apk download link](https://github.com/lampa-app/LAMPA/releases/latest/download/app-lite-release.apk)
+
+**Fork with removed TV content**
